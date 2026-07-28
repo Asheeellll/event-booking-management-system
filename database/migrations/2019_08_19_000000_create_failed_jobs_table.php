@@ -6,14 +6,8 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Disable wrapping this migration in a transaction.
-     */
-    public bool $withinTransaction = false;
+    public $withinTransaction = false;
 
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('failed_jobs', function (Blueprint $table) {
@@ -27,9 +21,6 @@ return new class extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('failed_jobs');
