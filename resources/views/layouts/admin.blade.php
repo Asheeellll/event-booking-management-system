@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin — @yield('title', 'Dashboard') | EventBook</title>
+    <title>Admin — @yield('title', 'Dashboard') | EventManage Pro</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
     <style>
@@ -104,7 +104,7 @@
 
 <aside class="sidebar" id="sidebar">
     <div class="sidebar-brand">
-        <div class="brand-text"><i class="bi bi-calendar-event me-2" style="color:#60a5fa;"></i>Event<span>Book</span></div>
+        <div class="brand-text"><i class="bi bi-stars me-2" style="color:#60a5fa;"></i>Event<span>Manage</span></div>
         <div class="sub">Admin Panel</div>
     </div>
     <nav style="padding:0.5rem 0;flex:1;">
@@ -117,7 +117,7 @@
             <i class="bi bi-calendar3"></i> Events
         </a>
         <a href="{{ route('admin.bookings.index') }}" class="sidebar-link {{ request()->routeIs('admin.bookings.*') ? 'active' : '' }}">
-            <i class="bi bi-ticket-perforated"></i> Bookings
+            <i class="bi bi-chat-dots"></i> Enquiries
         </a>
         <a href="{{ route('admin.users.index') }}" class="sidebar-link {{ request()->routeIs('admin.users.*') ? 'active' : '' }}">
             <i class="bi bi-people"></i> Users

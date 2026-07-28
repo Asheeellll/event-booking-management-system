@@ -127,12 +127,12 @@
             <div class="booking-sidebar">
                 <div class="sidebar-header">
                     @if($event->isFree())
-                        <div class="price-display" style="color:#4ade80;">Free</div>
+                        <div class="price-display" style="color:#4ade80;">Complimentary</div>
                         <div class="price-sub">No charges for this event</div>
                     @else
-                        <div style="color:rgba(255,255,255,0.5);font-size:0.72rem;margin-bottom:2px;">Ticket Price</div>
-                        <div class="price-display">₹{{ number_format($event->price) }}</div>
-                        <div class="price-sub">per person</div>
+                        <div style="color:rgba(255,255,255,0.5);font-size:0.72rem;margin-bottom:2px;">Starting From</div>
+                        <div class="price-display">&#8377;{{ number_format($event->price) }}</div>
+                        <div class="price-sub">custom quote available</div>
                     @endif
                 </div>
                 <div class="sidebar-body">
@@ -157,14 +157,12 @@
 
                     @if($event->status === 'cancelled')
                         <button class="btn-book-now disabled" disabled>Event Cancelled</button>
-                    @elseif($avail <= 0)
-                        <button class="btn-book-now disabled" disabled>Sold Out</button>
                     @elseif(auth()->check())
                         <a href="{{ route('bookings.create', $event) }}" class="btn-book-now">
-                            Book Now <i class="bi bi-arrow-right ms-1"></i>
+                            Send Enquiry <i class="bi bi-chat-dots ms-1"></i>
                         </a>
                     @else
-                        <a href="{{ route('login') }}" class="btn-book-now">Sign In to Book</a>
+                        <a href="{{ route('login') }}" class="btn-book-now">Sign In to Enquire</a>
                         <p class="text-center mt-2 mb-0" style="font-size:0.78rem;color:#94a3b8;">
                             New here? <a href="{{ route('register') }}" style="color:#2563eb;">Register free</a>
                         </p>

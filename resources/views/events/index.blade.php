@@ -1,7 +1,7 @@
 {{-- EVENT LISTING PAGE (events/index.blade.php) --}}
 @extends('layouts.app')
 @section('title', 'Browse Events')
-@section('description', 'Browse all upcoming events across India and book your tickets.')
+@section('description', 'Browse all upcoming events managed by our company and send an enquiry today.')
 
 @section('styles')
 <style>
@@ -48,9 +48,9 @@
 @section('content')
 <div class="page-hero">
     <div class="container">
-        <h1 class="text-white fw-bold mb-1" style="font-size:1.6rem;">Browse Events</h1>
+        <h1 class="text-white fw-bold mb-1" style="font-size:1.6rem;">Our Events</h1>
         <p style="color:rgba(255,255,255,0.5);font-size:0.875rem;margin:0;">
-            Find and book from upcoming events across India
+            Explore our event portfolio and send an enquiry for any event you're interested in
         </p>
     </div>
 </div>
@@ -123,13 +123,13 @@
                     <div class="d-flex align-items-center justify-content-between">
                         <div>
                             @if($event->isFree())
-                                <div class="event-price" style="color:#16a34a;">Free</div>
+                                <div class="event-price" style="color:#16a34a;">Complimentary</div>
                             @else
-                                <div class="event-price">₹{{ number_format($event->price) }}</div>
+                                <div class="event-price">Starting from ₹{{ number_format($event->price) }}</div>
                             @endif
-                            <div class="seats-label"><i class="bi bi-people me-1"></i>{{ $event->availableSeats() }} seats</div>
+                            <div class="seats-label"><i class="bi bi-people me-1"></i>{{ $event->capacity }} capacity</div>
                         </div>
-                        <a href="{{ route('events.show', $event) }}" class="btn-details">Details</a>
+                        <a href="{{ route('events.show', $event) }}" class="btn-details">Enquire</a>
                     </div>
                 </div>
             </div>

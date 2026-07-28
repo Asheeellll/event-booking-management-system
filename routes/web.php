@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 // ─── Controllers ─────────────────────────────────────────────────────────────
+use App\Http\Controllers\AIController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\BookingController;
@@ -45,8 +46,12 @@ Route::get('/events/{event}', [EventController::class, 'show'])->name('events.sh
 
 Route::middleware(['auth'])->group(function () {
 
-    // User Dashboard — shows user's stats and quick links
+    // User Dashboard
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+    // AI Event Planner
+    Route::post('/ai/event-plan', [AIController::class, 'generate'])
+        ->name('ai.event.plan');
 
     // Booking: Show form to book a specific event
     Route::get('/bookings/create/{event}', [BookingController::class, 'create'])->name('bookings.create');
@@ -61,7 +66,6 @@ Route::middleware(['auth'])->group(function () {
     Route::patch('/bookings/{booking}/cancel', [BookingController::class, 'cancel'])->name('bookings.cancel');
 
 });
-
 
 // ─────────────────────────────────────────────────────────────────────────────
 // GROUP 3: ADMIN ROUTES (requires login + admin role)

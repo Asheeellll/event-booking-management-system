@@ -48,16 +48,16 @@
     <div class="row g-3 mb-4">
         <div class="col-6 col-lg-3">
             <div class="stat-card">
-                <div class="stat-icon" style="background:#eff6ff;color:#2563eb;"><i class="bi bi-ticket-perforated"></i></div>
+                <div class="stat-icon" style="background:#eff6ff;color:#2563eb;"><i class="bi bi-chat-dots"></i></div>
                 <div class="stat-num" style="color:#1e40af;">{{ $stats['total'] }}</div>
-                <div class="stat-lbl">Total Bookings</div>
+                <div class="stat-lbl">Total Enquiries</div>
             </div>
         </div>
         <div class="col-6 col-lg-3">
             <div class="stat-card">
                 <div class="stat-icon" style="background:#f0fdf4;color:#16a34a;"><i class="bi bi-check-circle"></i></div>
-                <div class="stat-num" style="color:#15803d;">{{ $stats['confirmed'] }}</div>
-                <div class="stat-lbl">Confirmed</div>
+                <div class="stat-num" style="color:#15803d;">{{ $stats['approved'] }}</div>
+                <div class="stat-lbl">Approved</div>
             </div>
         </div>
         <div class="col-6 col-lg-3">
@@ -70,8 +70,8 @@
         <div class="col-6 col-lg-3">
             <div class="stat-card">
                 <div class="stat-icon" style="background:#fef2f2;color:#dc2626;"><i class="bi bi-x-circle"></i></div>
-                <div class="stat-num" style="color:#dc2626;">{{ $stats['cancelled'] }}</div>
-                <div class="stat-lbl">Cancelled</div>
+                <div class="stat-num" style="color:#dc2626;">{{ $stats['rejected'] }}</div>
+                <div class="stat-lbl">Rejected</div>
             </div>
         </div>
     </div>
@@ -81,8 +81,8 @@
         <div class="col-lg-8">
             <div class="section-card">
                 <div class="section-header d-flex justify-content-between align-items-center">
-                    <span><i class="bi bi-clock-history me-2 text-primary"></i>Recent Bookings</span>
-                    <a href="{{ route('bookings.my') }}" style="font-size:0.78rem;color:#2563eb;text-decoration:none;font-weight:600;">View all →</a>
+                    <span><i class="bi bi-clock-history me-2 text-primary"></i>Recent Enquiries</span>
+                    <a href="{{ route('bookings.my') }}" style="font-size:0.78rem;color:#2563eb;text-decoration:none;font-weight:600;">View all &rarr;</a>
                 </div>
                 @if($bookings->isEmpty())
                     <div class="text-center py-5 text-muted">
@@ -93,7 +93,7 @@
                 @else
                     <div class="table-responsive">
                         <table class="table recent-table mb-0">
-                            <thead><tr><th>Event</th><th>Date</th><th>Tickets</th><th>Status</th></tr></thead>
+                            <thead><tr><th>Event</th><th>Preferred Date</th><th>Package</th><th>Status</th></tr></thead>
                             <tbody>
                                 @foreach($bookings->take(5) as $b)
                                 <tr>
@@ -102,12 +102,22 @@
                                             {{ Str::limit($b->event->title, 38) }}
                                         </a>
                                     </td>
-                                    <td class="text-muted">{{ $b->event->date->format('d M Y') }}</td>
-                                    <td class="fw-semibold">{{ $b->tickets }}</td>
+                                    <td class="text-muted">
+                                        @if($b->preferred_date) {{ $b->preferred_date->format('d M Y') }}
+                                        @else {{ $b->event->date->format('d M Y') }}
+                                        @endif
+                                    </td>
                                     <td>
-                                        @if($b->status==='confirmed') <span class="bs-confirmed">Confirmed</span>
+                                        @if($b->package === 'silver') <span style="font-size:0.78rem;">🥈 Silver</span>
+                                        @elseif($b->package === 'gold') <span style="font-size:0.78rem;">🥇 Gold</span>
+                                        @elseif($b->package === 'premium') <span style="font-size:0.78rem;">💎 Premium</span>
+                                        @else <span class="text-muted">—</span>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if($b->status==='confirmed') <span class="bs-confirmed">Approved</span>
                                         @elseif($b->status==='pending') <span class="bs-pending">Pending</span>
-                                        @else <span class="bs-cancelled">Cancelled</span>
+                                        @else <span class="bs-cancelled">Rejected</span>
                                         @endif
                                     </td>
                                 </tr>
@@ -129,9 +139,9 @@
                     <div class="text-muted" style="font-size:0.75rem;">Find your next event</div>
                 </a>
                 <a href="{{ route('bookings.my') }}" class="action-card">
-                    <div class="action-icon"><i class="bi bi-ticket-perforated"></i></div>
-                    <div class="fw-semibold" style="color:#0f172a;font-size:0.875rem;">All My Bookings</div>
-                    <div class="text-muted" style="font-size:0.75rem;">Full booking history</div>
+                    <div class="action-icon"><i class="bi bi-chat-dots"></i></div>
+                    <div class="fw-semibold" style="color:#0f172a;font-size:0.875rem;">All My Enquiries</div>
+                    <div class="text-muted" style="font-size:0.75rem;">Full enquiry history</div>
                 </a>
                 @if(auth()->user()->isAdmin())
                 <a href="{{ route('admin.dashboard') }}" class="action-card" style="border-left:3px solid #1e40af;">

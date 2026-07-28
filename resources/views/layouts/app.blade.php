@@ -9,8 +9,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'EventBook India') — EventBook</title>
-    <meta name="description" content="@yield('description', 'Discover and book the best events across India.')">
+    <title>@yield('title', 'EventManage Pro') — EventManage Pro</title>
+    <meta name="description" content="@yield('description', 'Premier event management company in India. Weddings, corporate, concerts & more.')">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
@@ -61,10 +61,13 @@
             border-radius: 6px;
             transition: color 0.15s, background 0.15s;
         }
-        .navbar-main .nav-link:hover,
-        .navbar-main .nav-link.active {
+        .navbar-main .nav-link:hover {
             color: #fff !important;
-            background: rgba(255,255,255,0.08);
+            background: rgba(37,99,235,0.15);
+        }
+        .navbar-main .nav-link.active {
+            color: #2563EB !important;
+            background: transparent;
         }
         .navbar-toggler {
             border-color: rgba(255,255,255,0.2);
@@ -75,16 +78,16 @@
 
         /* Auth buttons in navbar */
         .btn-nav-login {
-            font-size: 0.85rem; font-weight: 500;
-            color: rgba(255,255,255,0.8) !important;
-            border: 1px solid rgba(255,255,255,0.2);
+            font-size: 0.85rem; font-weight: 600;
+            color: #2563EB !important;
+            border: 1px solid #2563EB;
             border-radius: 6px; padding: 0.35rem 1rem;
-            transition: all 0.15s; background: transparent;
+            transition: all 0.15s; background: #FFFFFF;
         }
         .btn-nav-login:hover {
-            background: rgba(255,255,255,0.08);
-            border-color: rgba(255,255,255,0.4);
-            color: #fff !important;
+            background: #F8FAFC;
+            color: #1D4ED8 !important;
+            border-color: #1D4ED8;
         }
         .btn-nav-signup {
             font-size: 0.85rem; font-weight: 600;
@@ -128,15 +131,15 @@
 
         /* ── Global Button ───────────────────────────────────────────── */
         .btn-primary-app {
-            background: #1e40af; color: #fff;
+            background: #2563EB; color: #fff;
             border: none; border-radius: 7px;
             font-weight: 600; font-size: 0.875rem;
             padding: 0.5rem 1.25rem;
             transition: background 0.15s, box-shadow 0.15s;
         }
         .btn-primary-app:hover {
-            background: #1e3a8a; color: #fff;
-            box-shadow: 0 2px 8px rgba(30,64,175,0.3);
+            background: #1D4ED8; color: #fff;
+            box-shadow: 0 2px 8px rgba(37,99,235,0.3);
         }
 
         /* ── Footer ─────────────────────────────────────────────────── */
@@ -168,7 +171,7 @@
 <nav class="navbar navbar-expand-lg navbar-main sticky-top">
     <div class="container">
         <a class="navbar-brand navbar-brand-text" href="{{ route('home') }}">
-            <i class="bi bi-calendar-event me-2" style="color:#60a5fa;"></i>Event<span>Book</span>
+            <i class="bi bi-stars me-2" style="color:#60a5fa;"></i>Event<span>Manage</span>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain">
             <span class="navbar-toggler-icon"></span>
@@ -188,7 +191,7 @@
                 @auth
                 <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('bookings.*') ? 'active' : '' }}" href="{{ route('bookings.my') }}">
-                        My Bookings
+                        My Enquiries
                     </a>
                 </li>
                 @endauth
@@ -233,7 +236,7 @@
                             </li>
                             <li>
                                 <a class="dropdown-item" href="{{ route('bookings.my') }}">
-                                    <i class="bi bi-ticket-perforated me-2 opacity-75"></i>My Bookings
+                                    <i class="bi bi-chat-dots me-2 opacity-75"></i>My Enquiries
                                 </a>
                             </li>
                             <li><hr class="dropdown-divider"></li>
@@ -280,10 +283,10 @@
         <div class="row gy-4">
             <div class="col-md-4">
                 <div class="footer-brand mb-2">
-                    <i class="bi bi-calendar-event me-2" style="color:#60a5fa;"></i>Event<span>Book</span>
+                    <i class="bi bi-stars me-2" style="color:#60a5fa;"></i>Event<span>Manage</span>
                 </div>
                 <p class="mb-0" style="line-height:1.7;">
-                    India's event discovery and booking platform. Find conferences, concerts, workshops and more.
+                    India's premier event management company. Weddings, corporate events, concerts and private celebrations.
                 </p>
             </div>
             <div class="col-md-4">
@@ -293,7 +296,7 @@
                     <li><a href="{{ route('events.index') }}">Browse Events</a></li>
                     @auth
                         <li><a href="{{ route('dashboard') }}">My Dashboard</a></li>
-                        <li><a href="{{ route('bookings.my') }}">My Bookings</a></li>
+                        <li><a href="{{ route('bookings.my') }}">My Enquiries</a></li>
                     @else
                         <li><a href="{{ route('login') }}">Sign In</a></li>
                         <li><a href="{{ route('register') }}">Create Account</a></li>
@@ -311,7 +314,7 @@
         </div>
         <hr style="border-color:rgba(255,255,255,0.07);margin:2rem 0 1rem;">
         <p class="text-center mb-0" style="font-size:0.8rem;">
-            &copy; {{ date('Y') }} EventBook India. Built with Laravel 10 &amp; Bootstrap 5.
+            &copy; {{ date('Y') }} EventManage Pro. Built with Laravel 10 &amp; Bootstrap 5.
         </p>
     </div>
 </footer>
