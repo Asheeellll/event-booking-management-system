@@ -44,7 +44,7 @@ class BookingController extends Controller
             'theme_preference' => ['nullable', 'string', 'max:200'],
             'package'          => ['required', 'in:silver,gold,premium'],
             'estimated_budget' => ['required', 'string', 'max:200'],
-            'notes'            => ['nullable', 'string', 'max:1000'],
+            'notes' => ['nullable', 'string'],
         ]);
 
         // Create the enquiry (tickets/total_price default to 0 for backward compatibility)
