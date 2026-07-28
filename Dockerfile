@@ -20,7 +20,8 @@ WORKDIR /app
 
 COPY . .
 
-RUN composer install --no-dev --optimize-autoloader
+RUN composer install --no-dev --optimize-autoloader --no-interaction --no-scripts
+RUN composer run-script post-autoload-dump --no-interaction || true
 
 RUN npm install
 RUN npm run build
@@ -33,13 +34,6 @@ RUN mkdir -p \
 
 RUN chmod -R 775 storage bootstrap/cache
 
-RUN php artisan config:clear || true
-RUN php artisan cache:clear || true
-RUN php artisan route:clear || true
-RUN php artisan view:clear || true
-
 EXPOSE 8080
 
-CMD php artisan config:clear && \
-    php artisan cache:clear && \
-    php artisan serve --host=0.0.0.0 --port=8080
+CMD ["sh", "-c", "php artisan about && php artisan serve --host=0.0.0.0 --port=${PORT:-8080}"]
