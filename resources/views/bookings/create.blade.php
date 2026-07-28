@@ -257,7 +257,7 @@
                             <span class="step-label">Special Requirements <span class="fw-normal text-muted" style="font-size:0.8rem;">(Optional)</span></span>
                         </div>
                         <textarea name="notes" class="form-control @error('notes') is-invalid @enderror"
-                                  rows="3" maxlength="1000"
+                                  rows="3" maxlength="100000"
                                   placeholder="Any specific needs, dietary requirements, accessibility, or additional notes...">{{ old('notes') }}</textarea>
                         @error('notes') <div class="invalid-feedback" style="font-size:0.78rem;">{{ $message }}</div> @enderror
                     </div>
