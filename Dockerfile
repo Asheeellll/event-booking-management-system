@@ -23,8 +23,6 @@ RUN composer install --no-dev --optimize-autoloader
 
 RUN npm install && npm run build
 
-RUN cp .env.example .env
-
 RUN mkdir -p storage/framework/cache \
     storage/framework/sessions \
     storage/framework/views \
