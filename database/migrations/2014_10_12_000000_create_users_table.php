@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
+    public bool $withinTransaction = false
     /**
      * Run the migrations.
      * This creates the 'users' table in the database.
