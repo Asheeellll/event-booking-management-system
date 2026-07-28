@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Schema;
  */
 return new class extends Migration
 {
+    public $withinTransaction = false;
     /**
      * Create the categories table.
      */
